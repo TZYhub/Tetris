@@ -111,25 +111,25 @@ void Background::InitTetris()
 
 void Background::SetScore(int score)
 {
-	HANDLE hout=GetStdHandle(STD_OUTPUT_HANDLE);
+	//HANDLE hout=GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD pos={scoreX,scoreY};
-	SetConsoleCursorPosition(hout,pos);
+	SetConsoleCursorPosition(m_hout,pos);
 	cout<<"得分：";
 	pos.X+=3;
 	pos.Y+=2;
-	SetConsoleCursorPosition(hout,pos);
+	SetConsoleCursorPosition(m_hout,pos);
 	cout<<score;
 }
 
 void Background::SetLife(int lifeValue)
 {
-	HANDLE hout=GetStdHandle(STD_OUTPUT_HANDLE);
+	//HANDLE hout=GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD pos={lifeX,lifeY};
-	SetConsoleCursorPosition(hout,pos);
+	SetConsoleCursorPosition(m_hout,pos);
 	cout<<"生命值：";
 	pos.X+=3;
 	pos.Y+=3;
-	SetConsoleCursorPosition(hout,pos);
+	SetConsoleCursorPosition(m_hout,pos);
 	for (int i=0;i<lifeValue;i++)
 	{
 		cout<<"■";
@@ -138,19 +138,23 @@ void Background::SetLife(int lifeValue)
 
 void Background::SetNext()
 {
-	HANDLE hout=GetStdHandle(STD_OUTPUT_HANDLE);
+	//HANDLE hout=GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD pos={nextX,nextY};
-	SetConsoleCursorPosition(hout,pos);
+	SetConsoleCursorPosition(m_hout,pos);
 	cout<<"下一个：";
 	pos.X+=2;
 	pos.Y+=3;
-	SetConsoleCursorPosition(hout,pos);
+	SetConsoleCursorPosition(m_hout,pos);
 	cout<<"■■■■";
 }
 
 void Background::MoveOneStep()
 {
 	//有值的向下加1，即移动一步
+	//先判断是否左右移动和旋转
+	//再把中心坐标向下加1
+	//然后设置到中心坐标上
+	//
 	for (int i=m_TetrisLine-1;i>=0;i--)
 	{
 		for (int j=0;j<m_TetrisColumn;j++)
